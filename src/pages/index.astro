@@ -1,25 +1,33 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import PlayListItemCard from "@/components/PlayListItemCard.astro";
+import PlaylistCard from "@/components/PlaylistCard.astro";
+import PlaylistItemCard from "@/components/PlaylistItemCard.astro";
 import { playlists } from "@/lib/data";
 import Greeting from "@/components/Greeting.svelte";
+import PageHeader from "@/components/PageHeader.astro";
 ---
 
 <Layout title="Spotify Clone">
   <div
     id="playlist-container"
-    class="relative transition-all duration-1000 bg-green-600"
+    class="relative transition-all duration-1000 bg-ebony-clay-900"
   >
-    <!-- <PageHeader /> -->
+    <PageHeader />
 
     <div class="relative z-10 px-6 pt-10">
-      <Greeting />
-      <div class="flex flex-wrap mt-6 gap-4">
-        {playlists.map((playlist) => <PlayListItemCard playlist={playlist} />)}
+      <Greeting client:visible />
+      <div
+        class="grid gap-y-4 gap-x-6 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 mt-10"
+      >
+        {playlists.map((playlist) => <PlaylistItemCard playlist={playlist} />)}
+      </div>
+
+      <div class="flex flex-wrap mt-6">
+        {playlists.map((playlist) => <PlaylistCard playlist={playlist} />)}
       </div>
 
       <div
-        class="absolute inset-0 bg-gradient-to-t from-zinc-900 via-zinc-900/80 -z-[1]"
+        class="absolute inset-0 bg-gradient-to-t from-ebony-clay-950 via-ebony-clay-950/80 -z-[1]"
       >
       </div>
     </div>

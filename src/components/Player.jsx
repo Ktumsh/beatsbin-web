@@ -164,9 +164,9 @@ export function Player () {
         <CurrentSong {...currentMusic.song} />
       </div>
 
-      <div className="grid place-content-center gap-4 flex-1">
+      <div className="grid place-content-center gap-4 flex-1 p-2">
         <div className="flex justify-center flex-col items-center">
-          <button className="bg-white rounded-full p-2" onClick={handleClick}>
+          <button className="bg-white hover:scale-105 rounded-full p-2 transition-all duration-300" onClick={handleClick}>
             {isPlaying ? <Pause /> : <Play />}
           </button>
           <SongControl audio={audioRef} />
