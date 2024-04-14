@@ -1,29 +1,37 @@
 ---
 import { Player } from "@/components/Player";
-import AsideMenu from "../components/AsideMenu.astro";
+import AsideMenu from "../components/aside/AsideMenu.astro";
 import { ViewTransitions } from "astro:transitions";
+import type { Playlist } from "@/lib/data";
 
 interface Props {
   title: string;
+  image?: string;
+  playlist?: Playlist;
 }
 
-const { title } = Astro.props;
+const {
+  title = "Inicio",
+  image = "https://res.cloudinary.com/dp3ppkxo5/image/upload/v1693776174/spotify-astro/playlist_2_f9ymlx.jpg",
+} = Astro.props;
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="es">
   <head>
     <meta charset="UTF-8" />
-    <meta name="description" content="Astro description" />
+    <meta name="description" content="BeatsBin, a spotify clone inspired" />
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="" />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
+    <meta property="og:image" content={image} />
+    <meta name="twitter:image" content={image} />
     <ViewTransitions fallback="none" />
   </head>
-  <body>
-    <div id="app" class="relative h-screen p-2 gap-2">
-      <aside class="[grid-area:aside] flex-col flex">
+  <body class="dark">
+    <div id="app" class="relative h-screen p-2 gap-2 flex items-stretch">
+      <aside class="[grid-area:aside] flex-col flex overflow-y-auto">
         <AsideMenu />
       </aside>
 
@@ -81,17 +89,34 @@ const { title } = Astro.props;
       }
 
       ::-webkit-scrollbar {
-        width: 8px;
-        height: 8px;
+        background: #000;
+        height: 10px;
+        width: 10px;
+      }
+      ::-webkit-scrollbar-track {
+        border-radius: 5px;
+        background-color: transparent;
+      }
+
+      ::-webkit-scrollbar-track:hover {
+        background-color: rgb(30, 30, 30);
+      }
+
+      ::-webkit-scrollbar-track:active {
+        background-color: rgb(30, 30, 30);
       }
 
       ::-webkit-scrollbar-thumb {
-        background: #2a2a2a;
-        border-radius: 4px;
+        border-radius: 5px;
+        background-color: rgb(50, 50, 50);
       }
 
-      ::-webkit-scrollbar-track {
-        background: transparent;
+      ::-webkit-scrollbar-thumb:hover {
+        background-color: rgb(70, 70, 70);
+      }
+
+      ::-webkit-scrollbar-thumb:active {
+        background-color: rgb(70, 70, 70);
       }
 
       @font-face {
@@ -136,62 +161,59 @@ const { title } = Astro.props;
     </style>
 
     <script is:inline defer>
-      function setContainerColor(dataColor) {
-        const playlistContainer = document.getElementById("playlist-container");
-        const currentColor = playlistContainer?.getAttribute("data-color");
-        if (dataColor && dataColor !== currentColor) {
-          playlistContainer?.style.setProperty("--context-color", dataColor);
-          playlistContainer?.setAttribute("data-color", dataColor);
+      document.addEventListener("astro:page-load", () => {
+        function setContainerColor(dataColor) {
+          const playlistContainer =
+            document.getElementById("playlist-container");
+          const currentColor = playlistContainer?.getAttribute("data-color");
+          if (dataColor && dataColor !== currentColor) {
+            playlistContainer?.style.setProperty("--context-color", dataColor);
+            playlistContainer?.setAttribute("data-color", dataColor);
+          }
         }
-      }
 
-      window.coloradTimeout = null;
-      for (const playlist of document.querySelectorAll(".playlist-item")) {
-        playlist.addEventListener("mouseover", () =>
-          onMouseOverColorad(playlist)
-        );
-        playlist.addEventListener("mouseout", onMouseOutColorad);
-        playlist.addEventListener("focus", () => onMouseFocusColorad(playlist));
-        playlist.addEventListener("blur", onMouseOutColorad);
-      }
-
-      function onMouseFocusColorad(el) {
-        if (el) {
-          const dataColor = el.getAttribute("data-color");
-          if (!dataColor) return;
-          setContainerColor(dataColor);
-        }
-      }
-      function onMouseOverColorad(el) {
-        if (el) {
-          const dataColor = el.getAttribute("data-color");
-          if (!dataColor) return;
-          window.coloradTimeout = setTimeout(
-            () => setContainerColor(dataColor),
-            200
+        window.coloradTimeout = null;
+        for (const playlist of document.querySelectorAll(".playlist-item")) {
+          playlist.addEventListener("mouseover", () =>
+            onMouseOverColorad(playlist)
           );
+          playlist.addEventListener("mouseout", onMouseOutColorad);
+          playlist.addEventListener("focus", () =>
+            onMouseFocusColorad(playlist)
+          );
+          playlist.addEventListener("blur", onMouseOutColorad);
         }
-      }
-      function onMouseOutColorad() {
-        if (window.coloradTimeout) {
-          clearTimeout(window.coloradTimeout);
-          window.coloradTimeout = null;
+
+        function onMouseFocusColorad(el) {
+          if (el) {
+            const dataColor = el.getAttribute("data-color");
+            if (!dataColor) return;
+            setContainerColor(dataColor);
+          }
         }
-      }
+        function onMouseOverColorad(el) {
+          if (el) {
+            const dataColor = el.getAttribute("data-color");
+            if (!dataColor) return;
+            window.coloradTimeout = setTimeout(
+              () => setContainerColor(dataColor),
+              200
+            );
+          }
+        }
+        function onMouseOutColorad() {
+          if (window.coloradTimeout) {
+            clearTimeout(window.coloradTimeout);
+            window.coloradTimeout = null;
+          }
+        }
+      });
     </script>
     <script>
-      document.addEventListener("DOMContentLoaded", () => {
-        if (!(document as any).startViewTransition) {
-          const notSupportElement = document.getElementById("not-support");
-          if (notSupportElement) {
-            notSupportElement.classList.remove("hidden");
-          }
+      document.addEventListener("astro:page-load", () => {
+        for (const el of document.querySelectorAll(".el-to-fade")) {
+          el.classList.remove("scale-90");
         }
-        document.addEventListener("astro:page-load", () => {
-          for (const el of document.querySelectorAll(".el-to-fade")) {
-            el.classList.remove("scale-90");
-          }
-        });
       });
     </script>
   </body>

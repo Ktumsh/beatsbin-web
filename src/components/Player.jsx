@@ -25,7 +25,7 @@ const CurrentSong = ({ image, title, artists }) => {
         flex items-center gap-5 relative
         overflow-hidden
       `}>
-        <picture className="w-16 h-16 bg-zinc-800 rounded-md shadow-lg overflow-hidden">
+        <picture className="w-16 h-16 bg-ebony-clay-950 rounded-md shadow-lg overflow-hidden">
           <img src={image} alt={title} />
         </picture>
 
@@ -33,7 +33,7 @@ const CurrentSong = ({ image, title, artists }) => {
           <h3 className="font-semibold text-sm block">
             {title}
           </h3>
-          <span className="text-xs opacity-80">
+          <span className="text-xs opacity-80 text-ebony-clay-100/70">
             {artists?.join(', ')}
           </span>
         </div>
@@ -97,7 +97,7 @@ const VolumeControl = () => {
   const setVolume = usePlayerStore(state => state.setVolume)
   const previousVolumeRef = useRef(volume)
 
-  const isVolumeSilenced = volume < 0.1
+  const isVolumeSilenced = volume === 0
 
   const handleClickVolumen = () => {
     if (isVolumeSilenced) {

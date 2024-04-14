@@ -17,7 +17,7 @@ const artistsString = artists.join(", ");
 >
   <a
     href={`/playlist/${id}`}
-    class="playlist-item transition-all flex relative p-3 overflow-hidden gap-2 pb-6 rounded-md w-44 flex-col"
+    class="playlist-card transition-all flex relative p-3 overflow-hidden gap-2 pb-6 rounded-md w-44 flex-col"
     data-color={color.dark}
     transition:name=`playlist ${id} box`
   >
@@ -49,6 +49,7 @@ const artistsString = artists.join(", ");
     group-hover:translate-y-0 group-hover:opacity-100
     z-10
   `
+    transition:name=`playlist ${id} play`
   >
     <CardPlayButton id={id} client:visible />
   </div>

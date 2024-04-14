@@ -5,7 +5,7 @@ import PageNext from "@/icons/PageNext.astro";
 ---
 
 <div
-  class="relative z-10 py-4 px-6 flex justify-between"
+  class="relative z-20 py-4 px-6 flex justify-between"
   transition:name="page header"
   transition:persist
 >
@@ -13,9 +13,7 @@ import PageNext from "@/icons/PageNext.astro";
     <a
       data-title="Volver"
       href="/"
-      type="button"
-      id="page-back"
-      aria-label="go back to home page"
+      aria-label="Volver al inicio"
       class="bg-ebony-clay-950/95 rounded-full inline-flex justify-center items-center h-8 w-8"
     >
       <PageBack class="h-4 w-4 -ml-0.5" />
@@ -23,22 +21,24 @@ import PageNext from "@/icons/PageNext.astro";
 
     <button
       disabled
-      type="button"
-      id="page-next"
-      aria-label="go back to home page"
+      aria-label="Avanzar la siguiente página"
       class="bg-ebony-clay-950 rounded-full inline-flex justify-center items-center h-8 w-8"
     >
       <PageNext class="h-4 w-4 -ml-0.5" />
     </button>
   </div>
-  <div class="flex items-center gap-3">
+  <div class="flex items-center gap-10">
     <a
       target="_blank"
       aria-label={"github repository"}
-      href="https://github.com/igorm84/spotify-astro-transitions"
-      class="text-gray-200 hover:text-white"
+      href="https://github.com/Ktumsh/beatsbin-web"
+      class="flex relative overflow-hidden group bg-gradient-to-br from-ebony-clay-950/10 to-ebony-clay-950/60 rounded-md px-2.5 transition-colors gap-1 items-center"
     >
-      <GitHub class="h-7 w-7" />
+      <img
+        class="w-20 h-auto opacity-90 hover:opacity-100"
+        src="/public/beatsbin-full-logo.png"
+        alt=""
+      />
     </a>
   </div>
 </div>
