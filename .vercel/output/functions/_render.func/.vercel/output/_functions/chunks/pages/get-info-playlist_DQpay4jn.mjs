@@ -1,6 +1,6 @@
-import { a as allPlaylists, s as songs } from './_id__D4GrWONi.mjs';
+import { a as allPlaylists, s as songs } from './_id__RR1EM4Uu.mjs';
 
-async function GET({ params, request }) {
+async function GET({ request }) {
   // get the id from the url search params
   const { url } = request;
   const urlObject = new URL(url);
