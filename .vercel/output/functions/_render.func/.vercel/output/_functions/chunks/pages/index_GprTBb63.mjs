@@ -17,15 +17,6 @@ const $$PlaylistCard = createComponent(async ($$result, $$props, $$slots) => {
     z-10`, "class")}${addAttribute(renderTransition($$result, "ng2wh52p", "", `playlist ${id} play`), "data-astro-transition-scope")}> ${renderComponent($$result, "CardPlayButton", CardPlayButton, { "id": id, "client:visible": true, "client:component-hydration": "visible", "client:component-path": "C:/workspace/beatsbin-web/src/components/CardPlayButton", "client:component-export": "CardPlayButton" })} </div> </article>`;
 }, "C:/workspace/beatsbin-web/src/components/PlaylistCard.astro", "self");
 
-const $$Astro$1 = createAstro();
-const $$PlaylistItemCard = createComponent(async ($$result, $$props, $$slots) => {
-  const Astro2 = $$result.createAstro($$Astro$1, $$props, $$slots);
-  Astro2.self = $$PlaylistItemCard;
-  const { playlist } = Astro2.props;
-  const { id, cover, title, color } = playlist;
-  return renderTemplate`${maybeRenderHead()}<article class="group relative shadow-lg rounded-md bg-ebony-clay-800/30 hover:bg-ebony-clay-700/40 focus:bg-ebony-clay-700/40 transition-all duration-300"> <a${addAttribute(`/playlist/${id}`, "href")} class="playlist-item flex relative transition-all duration-300 overflow-hidden items-center gap-5"${addAttribute(color.dark, "data-color")}${addAttribute(renderTransition($$result, "nsdsmds5", "", `playlist ${id} box`), "data-astro-transition-scope")}> <div class="h-14 w-14"> <img${addAttribute(cover, "src")}${addAttribute(title, "alt")} class="object-cover h-full w-full shadow-[5px_0_30px_0px_rgba(0,0,0,0.3)]"${addAttribute(renderTransition($$result, "yxukvssh", "", `playlist ${id} image`), "data-astro-transition-scope")}> </div> <div class="font-medium block"${addAttribute(renderTransition($$result, "nsgf3hxi", "", `playlist ${id} title`), "data-astro-transition-scope")}> ${title} </div> </a> <div class="absolute right-4 top-1 transition-all duration-300 opacity-0 group-hover:opacity-100 z-10"${addAttribute(renderTransition($$result, "l3uzvahc", "", `playlist ${id} play`), "data-astro-transition-scope")}> ${renderComponent($$result, "CardPlayButton", CardPlayButton, { "id": id, "client:visible": true, "client:component-hydration": "visible", "client:component-path": "C:/workspace/beatsbin-web/src/components/CardPlayButton", "client:component-export": "CardPlayButton" })} </div> </article>`;
-}, "C:/workspace/beatsbin-web/src/components/PlaylistItemCard.astro", "self");
-
 /** @returns {void} */
 
 function run(fn) {
@@ -133,6 +124,15 @@ const Greeting = create_ssr_component(($$result, $$props, $$bindings, slots) => 
 
 	return `<h1 class="text-3xl font-bold">${escape(greeting)}</h1>`;
 });
+
+const $$Astro$1 = createAstro();
+const $$PlaylistItemCard = createComponent(async ($$result, $$props, $$slots) => {
+  const Astro2 = $$result.createAstro($$Astro$1, $$props, $$slots);
+  Astro2.self = $$PlaylistItemCard;
+  const { playlist } = Astro2.props;
+  const { id, cover, title, color } = playlist;
+  return renderTemplate`${maybeRenderHead()}<article class="group relative shadow-lg rounded-md bg-ebony-clay-800/30 hover:bg-ebony-clay-700/40 focus:bg-ebony-clay-700/40 transition-all duration-300"> <a${addAttribute(`/playlist/${id}`, "href")} class="playlist-item flex relative transition-all duration-300 overflow-hidden items-center gap-5"${addAttribute(color.dark, "data-color")}${addAttribute(renderTransition($$result, "nsdsmds5", "", `playlist ${id} box`), "data-astro-transition-scope")}> <div class="h-14 w-14"> <img${addAttribute(cover, "src")}${addAttribute(title, "alt")} class="object-cover h-full w-full shadow-[5px_0_30px_0px_rgba(0,0,0,0.3)]"${addAttribute(renderTransition($$result, "yxukvssh", "", `playlist ${id} image`), "data-astro-transition-scope")}> </div> <div class="font-medium block"${addAttribute(renderTransition($$result, "nsgf3hxi", "", `playlist ${id} title`), "data-astro-transition-scope")}> ${title} </div> </a> <div class="absolute right-4 top-1 transition-all duration-300 opacity-0 group-hover:opacity-100 z-10"${addAttribute(renderTransition($$result, "l3uzvahc", "", `playlist ${id} play`), "data-astro-transition-scope")}> ${renderComponent($$result, "CardPlayButton", CardPlayButton, { "id": id, "client:visible": true, "client:component-hydration": "visible", "client:component-path": "C:/workspace/beatsbin-web/src/components/CardPlayButton", "client:component-export": "CardPlayButton" })} </div> </article>`;
+}, "C:/workspace/beatsbin-web/src/components/PlaylistItemCard.astro", "self");
 
 const $$Astro = createAstro();
 const $$Index = createComponent(async ($$result, $$props, $$slots) => {
